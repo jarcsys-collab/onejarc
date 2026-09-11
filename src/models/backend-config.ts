@@ -17,7 +17,7 @@ export const BACKEND_PROFILES: Record<
   development: {
     environment: 'development',
     dataSource: 'local',
-    apiBaseUrl: 'https://jarc-juno.app.n8n.cloud/webhook/e5228a9c-395f-47a2-a521-88c77454f2fd',
+    apiBaseUrl: 'https://jarc-juno.app.n8n.cloud/webhook/tools',
     timeoutMs: 12000,
   },
   staging: {
