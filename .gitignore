@@ -1,0 +1,10 @@
+# Dependencies and local machine state must never go into the future repository.
+node_modules/
+.env
+.env.*
+*.log
+*.tsbuildinfo
+.DS_Store
+
+# site/ is intentionally included: the manual Pages workflow publishes this
+# already-built test snapshot. Rebuild and validate before committing changes.
