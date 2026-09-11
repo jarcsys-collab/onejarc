@@ -1,0 +1,262 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  /* Semantic status colors keep notices legible in both themes. */
+  --color-hub-warning: var(--hub-warning);
+  --color-hub-success: var(--hub-success);
+  --color-hub-info: var(--hub-info);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--northstar-font);
+  --font-heading: var(--northstar-font);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.72);
+  --radius-md: calc(var(--radius) * 0.9);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.35);
+  --radius-2xl: calc(var(--radius) * 1.75);
+}
+
+:root {
+  /* Dark remains the default for existing users with no saved appearance. */
+  --app-color-scheme: dark;
+  --hub-warning: #fcd34d;
+  --hub-success: #6ee7b7;
+  --hub-info: #c4b5fd;
+  --northstar-font:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    'Segoe UI', sans-serif;
+  --background: #0b0e10;
+  --foreground: #f3f8f8;
+  --card: #15191d;
+  --card-foreground: #f3f8f8;
+  --popover: #171b1f;
+  --popover-foreground: #f3f8f8;
+  --primary: #76e5dc;
+  --primary-foreground: #071213;
+  --secondary: #20262b;
+  --secondary-foreground: #f3f8f8;
+  --muted: #1c2226;
+  --muted-foreground: #9ba9ab;
+  --accent: #20272b;
+  --accent-foreground: #f3f8f8;
+  --destructive: #ff6b6b;
+  --border: rgba(255, 255, 255, 0.09);
+  --input: rgba(255, 255, 255, 0.12);
+  --ring: #76e5dc;
+  --radius: 0.75rem;
+  --sidebar: #0e1114;
+  --sidebar-foreground: #eaf5f4;
+  --sidebar-primary: #76e5dc;
+  --sidebar-primary-foreground: #071213;
+  --sidebar-accent: rgba(118, 229, 220, 0.11);
+  --sidebar-accent-foreground: #b8fbf5;
+  --sidebar-border: rgba(255, 255, 255, 0.07);
+  --sidebar-ring: #76e5dc;
+}
+
+/* Light uses the same semantic contract as dark, including portaled UI.
+   Avoid per-component light overrides: new features should consume these tokens. */
+:root[data-theme='light'] {
+  --app-color-scheme: light;
+  --background: #f3f6f8;
+  --foreground: #172b36;
+  --card: #ffffff;
+  --card-foreground: #172b36;
+  --popover: #ffffff;
+  --popover-foreground: #172b36;
+  --primary: #0c756d;
+  --primary-foreground: #ffffff;
+  --secondary: #e8eef1;
+  --secondary-foreground: #172b36;
+  --muted: #e8eef1;
+  --muted-foreground: #546775;
+  --accent: #e5efee;
+  --accent-foreground: #172b36;
+  --destructive: #be123c;
+  --border: #d5dfe4;
+  --input: #c6d3db;
+  --ring: #0c756d;
+  --sidebar: #ffffff;
+  --sidebar-foreground: #172b36;
+  --sidebar-primary: #0c756d;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #e5f3f0;
+  --sidebar-accent-foreground: #0b645e;
+  --sidebar-border: #d5dfe4;
+  --sidebar-ring: #0c756d;
+  --hub-warning: #92400e;
+  --hub-success: #047857;
+  --hub-info: #6d28d9;
+}
+
+/* The supplied white SVG and teal search banner intentionally retain their
+   dark treatment in light mode. Their descendants still use semantic tokens. */
+.hub-dark-surface {
+  --foreground: #ffffff;
+  --muted-foreground: #bdd5d5;
+  --primary: #76e5dc;
+  --primary-foreground: #071213;
+  --border: rgba(255, 255, 255, 0.15);
+  --hub-warning: #fcd34d;
+  --hub-success: #6ee7b7;
+  --hub-info: #c4b5fd;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    color-scheme: var(--app-color-scheme);
+    background: var(--background);
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    min-width: 320px;
+    font-family: var(--northstar-font);
+    text-rendering: optimizeLegibility;
+  }
+
+  button,
+  input {
+    font: inherit;
+  }
+}
+
+::selection {
+  background: color-mix(in srgb, var(--primary) 28%, transparent);
+  color: var(--foreground);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--foreground) 22%, transparent)
+    transparent;
+}
+
+/* Cards size against the usable content width, not just the window: the sidebar
+   must never squeeze four columns into laptop space. Density remains a preference. */
+.hub-tool-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr));
+  gap: 1rem;
+}
+.hub-tool-grid-compact {
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 16rem), 1fr));
+  gap: 0.75rem;
+}
+.hub-tool-card {
+  min-height: 13.5rem;
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+.hub-tool-grid-compact .hub-tool-card { padding: 1rem; }
+/* No motion-dependent controls: pointer hover and keyboard focus share emphasis. */
+.hub-tool-card:focus-within {
+  border-color: color-mix(in srgb, var(--primary) 32%, var(--border));
+}
+@media (hover: hover) {
+  .hub-tool-card:hover {
+    background: color-mix(in srgb, var(--card) 96%, var(--foreground));
+    border-color: color-mix(in srgb, var(--primary) 24%, var(--border));
+    box-shadow: 0 4px 14px rgb(0 0 0 / 9%);
+  }
+  .hub-tool-launch:hover svg {
+    transform: translateX(2px);
+  }
+}
+.hub-tool-launch svg {
+  transition: transform 180ms ease;
+}
+/* Feedback only runs after a favorite interaction, never on initial hydration. */
+@keyframes hub-favorite-feedback {
+  from {
+    opacity: 0.45;
+    transform: scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.hub-favorite-feedback {
+  animation: hub-favorite-feedback 180ms ease-out;
+}
+/* Override the primitives' default zoom with a short, restrained fade/slide. */
+@keyframes hub-surface-in {
+  from {
+    opacity: 0;
+    transform: translateY(3px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.hub-tool-menu[data-open],
+.hub-tool-details[data-open] {
+  animation: hub-surface-in 180ms ease-out;
+}
+@media (max-width: 639px) {
+  .hub-tool-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.75rem;
+  }
+  .hub-tool-card {
+    min-height: 12.5rem;
+  }
+}
+
+/* A user can reduce motion here without changing their operating system.
+   The media query below still respects a device-wide accessibility preference. */
+html[data-reduce-motion='true'] *,
+html[data-reduce-motion='true'] *::before,
+html[data-reduce-motion='true'] *::after {
+  scroll-behavior: auto !important;
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
