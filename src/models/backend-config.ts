@@ -16,7 +16,7 @@ export const BACKEND_PROFILES: Record<
 > = {
   development: {
     environment: 'development',
-    dataSource: 'local',
+    dataSource: 'api',
     apiBaseUrl: 'https://jarc-juno.app.n8n.cloud/webhook/tools',
     timeoutMs: 12000,
   },
@@ -28,7 +28,7 @@ export const BACKEND_PROFILES: Record<
   },
   production: {
     environment: 'production',
-    dataSource: 'local',
+    dataSource: 'api',
     apiBaseUrl: 'https://jarc-juno.app.n8n.cloud/webhook/tools',
     timeoutMs: 12000,
   },
